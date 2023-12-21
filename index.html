@@ -14,7 +14,7 @@ document.getElementById('checkAppButton').addEventListener('click', function() {
   var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
   var isAndroid = /Android/i.test(navigator.userAgent);
 
-  var appScheme = isIOS ? 'com.turnkey.ticketTixsss://' : 'turnkey://';
+  var appScheme = 'com.turnkey.ticketTixsss://';
   var fallbackUrl = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
 
   var testLink = document.createElement('a');
