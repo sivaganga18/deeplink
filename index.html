@@ -1,78 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Turnkey Tix</title>
-    <meta name="description" content="India's First Auction Led Shopping Platform" />
-    <meta property="og:title" content="Turnkey Tix" />
-    <!-- <meta property="og:url" content="{ELEMENT_URL}" />
-    <meta property="og:description" content="Find this in my app" />
-    <meta property="og:image" content="{ELEMENT_PICTURE}" />
-    <meta property="og:type" content="article" />
-    <meta property="fb:app_id" content="{FACEBOOK_APP_ID}" /> -->
-    <meta property="al:ios:url" content="com.turnkey.ticketTixsss://" />
-    <meta property="al:ios:app_store_id" content="" />
-    <meta property="al:ios:app_name" content="Turnkey Tix" />
-    <meta property="al:android:url" content="turnkey://" />
-    <meta property="al:android:app_name" content="Turnkey Tix" />
-    <meta property="al:android:package" content="turnkey://" />
-    <meta property="al:web:url" content="https://turnkeytix.com/" />
-    <meta property="al:web:should_fallback" content="false" />
-    <script>
-      function getParameterByName(name, url = window.location.href) {
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return "";
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-      }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check App Installation</title>
+</head>
+<body>
 
-      function redirect() {
-        var change = false;
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        var ios = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-        if (ios) {
+<script>
+// Replace 'your-ios-app-scheme' with your actual iOS app scheme
+var iosAppScheme = 'com.turnkey.ticketTixsss://';
 
-          const id = getParameterByName("id", (url = window.location.href));
-          const code = getParameterByName("code", (url = window.location.href));
-          if(id){
-            window.location = `com.turnkey.ticketTixsss://`;
-          }else if(code){
-            window.location = `com.turnkey.ticketTixsss://email/${code}`;
-          }else {
-  window.location = `com.turnkey.ticketTixsss://`;
-}
-          window.setTimeout(() => {
-            window.location.replace(`https://apps.apple.com/us/app/turnkey-tix/id6459884004`);
-          }, 25);
+// Attempt to open the iOS app scheme using an iframe
+var iframe = document.createElement('iframe');
+iframe.style.width = '1px';
+iframe.style.height = '1px';
+iframe.style.border = 'none';
+iframe.src = iosAppScheme;
 
-          window.onblur = function () {
-    change = true;
-};
-window.onfocus = function(){
-    change = false;
-}
-          return;
-        }
-        var android = /android/i.test(userAgent);
-        if (android) {
-          const id = getParameterByName("id", (url = window.location.href));
-          const code = getParameterByName("code", (url = window.location.href));
-          if(id){
-            window.location = `turnkey://auction/${id}`;
-          }else if(code){
-            window.location = `turnkey://email/${code}`;
-          }
-        //   window.location = `bidzapp://auction/${id}`;
-          window.setTimeout(() => {
-            window.location.replace(`https://turnkeytix.com/`);
-          }, 25);
-          return;
-        }
-        window.location.replace("https://turnkeytix.com/");
-      }
-      redirect();
-    </script>
-  </head>
+// Append the iframe to the document body
+document.body.appendChild(iframe);
+
+// Redirect to the App Store if the app scheme fails
+setTimeout(function() {
+  document.body.removeChild(iframe);
+  window.location.href = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
+}, 1000); // Adjust the delay as needed
+</script>
+
+</body>
 </html>
