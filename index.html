@@ -1,41 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check App Installation</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="browser-deeplink.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    deeplink.setup({
+        iOS: {
+            appId: "284882215",
+            appName: "facebook",
+        },
+        android: {
+            appId: "com.facebook.katana"
+        }
+    });
+
+    function clickHandler(uri) {
+        deeplink.open(uri);
+        return false;
+    }
+
+    </script>
+    <style>
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+    a {
+        font-family: monospace;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 25px;
+        background: #060;
+        color:#fff;
+        text-align: center;
+        font-size: 20px;
+    }
+    </style>
 </head>
 <body>
-
-<button id="checkAppButton">Check App Installation</button>
-
-<script>
-document.getElementById('checkAppButton').addEventListener('click', function() {
-  var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
-  var isAndroid = /Android/i.test(navigator.userAgent);
-
-  var appScheme = 'com.turnkey.ticketTixsss://';
-  var fallbackUrl = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
-
-  var testLink = document.createElement('a');
-  testLink.href = appScheme;
-
-  var checkTimeout = setTimeout(function() {
-    // If the timeout is reached, assume the app is not installed and redirect to the website
-    window.location.href = fallbackUrl;
-  }, 1000); // Adjust the timeout as needed
-
-  testLink.onload = function() {
-    // If onload is triggered, the app is installed, and we can clear the timeout
-    clearTimeout(checkTimeout);
-    // You can add additional logic here if needed
-  };
-
-  // Trigger the link to check if the app is installed
-  document.body.appendChild(testLink);
-  document.body.removeChild(testLink);
-});
-</script>
-
+    <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb://profile</a>
 </body>
 </html>
