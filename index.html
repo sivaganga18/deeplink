@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check App Installation</title>
-</head>
-<body>
+<html>
+    <body>
+        <script type="text/javascript">
+            window.onload = function() {
+                // Deep link to your app goes here
+                document.getElementById("l").src = "com.turnkey.ticketTixsss://";
 
-<script>
-// Replace 'your-ios-app-scheme' with your actual iOS app scheme
-var iosAppScheme = 'com.turnkey.ticketTixsss://';
-
-// Attempt to open the iOS app scheme using an iframe
-var iframe = document.createElement('iframe');
-iframe.style.width = '1px';
-iframe.style.height = '1px';
-iframe.style.border = 'none';
-iframe.src = iosAppScheme;
-
-// Append the iframe to the document body
-document.body.appendChild(iframe);
-
-// Redirect to the App Store if the app scheme fails
-setTimeout(function() {
-  document.body.removeChild(iframe);
-  window.location.href = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
-}, 1000); // Adjust the delay as needed
-</script>
-
-</body>
+                setTimeout(function() {
+                    // Link to the App Store should go here -- only fires if deep link fails                
+                    window.location = "https://apps.apple.com/us/app/turnkey-tix/id6459884004";
+                }, 500);
+            };
+        </script>
+        <iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
+    </body>
 </html>
