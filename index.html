@@ -1,0 +1,26 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+
+
+var fallbackToStore = function() {
+  window.location.replace('https://apps.apple.com/us/app/turnkey-tix/id6459884004');
+};
+var openApp = function() {
+  window.location.replace('com.turnkey.ticketTixsss://');
+};
+var triggerAppOpen = function() {
+  openApp();
+  setTimeout(fallbackToStore, 700);
+};
+
+triggerAppOpen();
+
+</script>
+</head>
+<body>
+  <span>Turnkey</span>
+</body>
+
+</html>
