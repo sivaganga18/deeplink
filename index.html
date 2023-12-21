@@ -3,30 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your App</title>
+  <title>Check App Installation</title>
 </head>
 <body>
-  <div>
-    <h1>Welcome to Your App</h1>
-    <p>Get the best experience by using our app!</p>
 
-    <button onclick="openApp()">Open App</button>
-  </div>
+<button id="checkAppButton">Check App Installation</button>
 
-  <script>
-    function openApp() {
-      // Replace 'your-app-scheme' with your actual custom URL scheme
-      const appScheme = 'com.turnkey.ticketTixsss://';
+<script>
+document.getElementById('checkAppButton').addEventListener('click', function() {
+  var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+  var isAndroid = /Android/i.test(navigator.userAgent);
 
-      // Attempt to open the app using the custom URL scheme
-      window.location.href = appScheme;
+  var appScheme = isIOS ? 'com.turnkey.ticketTixsss://' : 'turnkey://';
+  var fallbackUrl = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
 
-      // Fallback: Redirect to the app store or website
-      setTimeout(() => {
-        // Replace 'your-app-store-link' with your actual app store link
-        window.location.href = 'https://apps.apple.com/us/app/turnkey-tix/id6459884004';
-      }, 1000); // Adjust the delay as needed
-    }
-  </script>
+  var testLink = document.createElement('a');
+  testLink.href = appScheme;
+
+  var checkTimeout = setTimeout(function() {
+    // If the timeout is reached, assume the app is not installed and redirect to the website
+    window.location.href = fallbackUrl;
+  }, 1000); // Adjust the timeout as needed
+
+  testLink.onload = function() {
+    // If onload is triggered, the app is installed, and we can clear the timeout
+    clearTimeout(checkTimeout);
+    // You can add additional logic here if needed
+  };
+
+  // Trigger the link to check if the app is installed
+  document.body.appendChild(testLink);
+  document.body.removeChild(testLink);
+});
+</script>
+
 </body>
 </html>
