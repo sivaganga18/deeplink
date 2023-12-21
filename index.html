@@ -29,6 +29,7 @@
       }
 
       function redirect() {
+        var change = false;
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         var ios = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
         if (ios) {
@@ -45,6 +46,13 @@
           window.setTimeout(() => {
             window.location.replace(`https://apps.apple.com/us/app/turnkey-tix/id6459884004`);
           }, 25);
+
+          window.onblur = function () {
+    change = true;
+};
+window.onfocus = function(){
+    change = false;
+}
           return;
         }
         var android = /android/i.test(userAgent);
